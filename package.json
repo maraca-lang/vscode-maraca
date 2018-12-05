@@ -1,0 +1,31 @@
+{
+  "name": "vscode-maraca",
+  "publisher": "vscode",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.28.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "maraca",
+        "aliases": [
+          "Maraca",
+          "maraca"
+        ],
+        "extensions": [
+          ".ma"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "maraca",
+        "scopeName": "source.maraca",
+        "path": "./syntaxes/maraca.tmLanguage.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Maraca",
+  "patterns": [
+    {
+      "name": "constant.character.escape.maraca",
+      "match": "\\\\\\S"
+    },
+    {
+      "name": "storage.type.maraca",
+      "match": "\\[|\\]|\\(|\\)|\\{|\\}|,"
+    },
+    {
+      "name": "storage.modifier.maraca",
+      "match": ":=\\?|:=|::|:|=>>|=>|~"
+    },
+    {
+      "name": "variable.language.maraca",
+      "match": "\\?"
+    },
+    {
+      "name": "entity.name.function.maraca",
+      "match": "(@@@|@@|@|##|#)((\\d+\\.\\d+)|([a-zA-Z0-9]+))?"
+    },
+    {
+      "name": "keyword.operator.maraca",
+      "match": "<=|>=|==|<|>|=|\\+|\\-|\\*|/|%|\\^|!|\\."
+    },
+    {
+      "name": "constant.numeric.maraca",
+      "match": "(\\d+\\.\\d+)|([a-zA-Z0-9]+)"
+    },
+    {
+      "name": "string.quoted.double.maraca",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.maraca",
+          "match": "\\\\."
+        }
+      ]
+    }
+  ],
+  "scopeName": "source.maraca"
+}
