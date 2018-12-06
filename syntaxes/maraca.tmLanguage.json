@@ -4,7 +4,7 @@
   "patterns": [
     {
       "name": "constant.character.escape.maraca",
-      "match": "\\\\\\S"
+      "match": "'\\S"
     },
     {
       "name": "storage.type.maraca",
@@ -12,7 +12,12 @@
     },
     {
       "name": "storage.modifier.maraca",
-      "match": ":=\\?|:=|::|:|=>>|=>|~"
+      "match": "((\\d+\\.\\d+)|([a-zA-Z0-9]+))?(:=\\?|:=|::|:|=>>|=>|~)",
+      "captures": {
+        "1": {
+          "name": "support.type.maraca"
+        }
+      }
     },
     {
       "name": "variable.language.maraca",
@@ -33,14 +38,15 @@
     {
       "name": "string.quoted.double.maraca",
       "begin": "\"",
-      "end": "\"",
+      "end": "\"(?!\")",
       "patterns": [
         {
           "name": "constant.character.escape.maraca",
-          "match": "\\\\."
+          "match": "\"\""
         }
       ]
     }
   ],
+  "repository": {},
   "scopeName": "source.maraca"
 }
