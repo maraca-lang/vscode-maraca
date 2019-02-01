@@ -4,7 +4,7 @@
   "patterns": [
     {
       "name": "constant.character.escape.maraca",
-      "match": "'(\\S|\\n)"
+      "match": "('(\\S|\\n)|_)"
     },
     {
       "name": "storage.type.maraca",
@@ -29,11 +29,11 @@
     },
     {
       "name": "entity.name.function.maraca",
-      "match": "(##|#)((\\d+\\.\\d+)|([a-zA-Z0-9]+))?"
+      "match": "#((\\d+\\.\\d+)|([a-zA-Z0-9]+))?"
     },
     {
       "name": "keyword.operator.maraca",
-      "match": "<=|>=|==|<|>|=|\\+|\\-|\\*|/|%|\\^|!|\\.|&"
+      "match": "<=|>=|==|<|>|=|\\+|\\-|\\*|/|%|\\^|!|\\.|&|\\$"
     },
     {
       "name": "constant.numeric.maraca",
@@ -49,6 +49,10 @@
           "match": "\"\""
         }
       ]
+    },
+    {
+      "name": "comment.block.maraca",
+      "match": "`[^`]*`"
     }
   ],
   "repository": {},
