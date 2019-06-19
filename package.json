@@ -2,7 +2,7 @@
   "name": "vscode-maraca",
   "displayName": "Maraca",
   "description": "Maraca language support",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "publisher": "jsiwhitehead",
   "engines": {
     "vscode": "^1.29.0"
