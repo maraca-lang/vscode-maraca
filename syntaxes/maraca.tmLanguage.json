@@ -3,58 +3,98 @@
   "name": "Maraca",
   "patterns": [
     {
-      "name": "constant.character.escape.maraca",
-      "match": "('(\\S|\\n)|_)"
-    },
-    {
-      "name": "storage.type.maraca",
-      "match": "\\[|\\]|\\(|\\)|\\{|\\}|,"
-    },
-    {
-      "name": "storage.modifier.maraca",
-      "match": "((((\\d+\\.\\d+)|([a-zA-Z0-9]+)) +)*((\\d+\\.\\d+)|([a-zA-Z0-9]+)))?(:=\\?|:=|::|:|=>>|=>|~)",
-      "captures": {
-        "1": {
-          "name": "support.type.maraca"
-        }
-      }
-    },
-    {
-      "name": "variable.language.maraca",
-      "match": "\\?"
-    },
-    {
-      "name": "entity.name.function.maraca",
-      "match": "@@@|@@|@"
-    },
-    {
-      "name": "entity.name.function.maraca",
-      "match": "#((\\d+\\.\\d+)|([a-zA-Z0-9]+))?"
-    },
-    {
-      "name": "keyword.operator.maraca",
-      "match": "->|<=|>=|==|<|>|=|\\+|\\-|\\*|/|%|\\^|!|\\.|\\||\\$"
-    },
-    {
-      "name": "constant.numeric.maraca",
-      "match": "(\\d+\\.\\d+)|([a-zA-Z0-9]+)"
-    },
-    {
-      "name": "string.quoted.double.maraca",
-      "begin": "\"",
-      "end": "\"(?!\")",
+      "include": "#main"
+    }
+  ],
+  "repository": {
+    "main": {
       "patterns": [
         {
           "name": "constant.character.escape.maraca",
-          "match": "\"\""
+          "match": "(\\\\(\\S|\\n)|_)"
+        },
+        {
+          "name": "storage.type.maraca",
+          "match": "\\[|\\]|\\(|\\)|\\{|\\}|,"
+        },
+        {
+          "name": "storage.modifier.maraca",
+          "match": "((((\\d+\\.\\d+)|([a-zA-Z0-9]+)) +)*((\\d+\\.\\d+)|([a-zA-Z0-9]+)))?(:=\\?|:=|:|=>>|=>|~)",
+          "captures": {
+            "1": {
+              "name": "support.type.maraca"
+            }
+          }
+        },
+        {
+          "name": "variable.language.maraca",
+          "match": "\\?"
+        },
+        {
+          "name": "entity.name.function.maraca",
+          "match": "@@@|@@|@"
+        },
+        {
+          "name": "entity.name.function.maraca",
+          "match": "#((\\d+\\.\\d+)|([a-zA-Z0-9]+))?"
+        },
+        {
+          "name": "keyword.operator.maraca",
+          "match": "->|<=|>=|==|<|>|=|\\+|\\-|\\*|/|%|\\^|!|\\.|\\||\\$"
+        },
+        {
+          "name": "constant.numeric.maraca",
+          "match": "(\\d+\\.\\d+)|([a-zA-Z0-9]+)"
+        },
+        {
+          "name": "string.quoted.double.maraca",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "include": "#string"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.double.maraca",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.maraca",
+              "match": "\\\\[\\S\\s]"
+            }
+          ]
+        },
+        {
+          "name": "comment.block.maraca",
+          "match": "`[^`]*`"
         }
       ]
     },
-    {
-      "name": "comment.block.maraca",
-      "match": "`[^`]*`"
+    "string": {
+      "patterns": [
+        {
+          "name": "constant.character.escape.maraca",
+          "match": "\\\\[\\S\\s]"
+        },
+        {
+          "name": "storage.type.maraca",
+          "match": ">"
+        },
+        {
+          "name": "storage.type.maraca",
+          "begin": "<",
+          "end": "/>",
+          "patterns": [
+            {
+              "include": "#main"
+            }
+          ]
+        }
+      ]
     }
-  ],
-  "repository": {},
+  },
   "scopeName": "source.maraca"
 }
