@@ -11,7 +11,7 @@
       "patterns": [
         {
           "name": "constant.character.escape.maraca",
-          "match": "(\\\\(\\S|\\n)|_)"
+          "match": "(\\\\(\\S|\\n| )|_)"
         },
         {
           "name": "storage.type.maraca",
@@ -69,7 +69,8 @@
         },
         {
           "name": "comment.block.maraca",
-          "match": "`[^`]*`"
+          "begin": "`",
+          "end": "`"
         }
       ]
     },
