@@ -31,16 +31,8 @@
           "match": "\\?"
         },
         {
-          "name": "entity.name.function.maraca",
-          "match": "@@@|@@|@"
-        },
-        {
-          "name": "entity.name.function.maraca",
-          "match": "#((\\d+\\.\\d+)|([a-zA-Z0-9]+))?"
-        },
-        {
           "name": "keyword.operator.maraca",
-          "match": "->|<=|>=|==|<|>|=|\\+|\\-|\\*|/|%|\\^|!|\\.|\\||\\$"
+          "match": "->|<=|>=|<|>|~|=|\\+|\\-|\\*|/|%|\\^|!|\\.|\\||\\$|#"
         },
         {
           "name": "constant.numeric.maraca",
