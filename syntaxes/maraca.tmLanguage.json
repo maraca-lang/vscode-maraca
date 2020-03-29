@@ -39,12 +39,13 @@
           "match": "(\\d+\\.\\d+)|([a-zA-Z0-9]+)"
         },
         {
-          "name": "string.quoted.double.maraca",
+          "name": "constant.numeric.maraca",
           "begin": "'",
           "end": "'",
           "patterns": [
             {
-              "include": "#string"
+              "name": "constant.character.escape.maraca",
+              "match": "\\\\[\\S\\s]"
             }
           ]
         },
@@ -54,8 +55,7 @@
           "end": "\"",
           "patterns": [
             {
-              "name": "constant.character.escape.maraca",
-              "match": "\\\\[\\S\\s]"
+              "include": "#string"
             }
           ]
         },
