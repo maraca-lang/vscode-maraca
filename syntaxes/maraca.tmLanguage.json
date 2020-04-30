@@ -19,7 +19,7 @@
         },
         {
           "name": "support.type.maraca",
-          "match": "(((((\\d+\\.\\d+)|([a-zA-Z0-9]+)) +)*((\\d+\\.\\d+)|([a-zA-Z0-9]+)))|('([^\\\\]|\\\\[\\S\\s])*?'))?(:=\\?|:=|:|=>>|=>)"
+          "match": "(((((\\d+\\.\\d+)|([a-zA-Z0-9]+)) +)*((\\d+\\.\\d+)|([a-zA-Z0-9]+)))|('([^\\\\]|\\\\[\\S\\s])*?'))?(:=\\?|:=|:~|:|=>>|=>)"
         },
         {
           "name": "support.variable.maraca",
@@ -57,7 +57,10 @@
         {
           "name": "comment.block.maraca",
           "begin": "`",
-          "end": "`"
+          "end": "(,)",
+          "captures": {
+            "1": { "name": "storage.type.maraca" }
+          }
         }
       ]
     },
@@ -66,10 +69,6 @@
         {
           "name": "constant.character.escape.maraca",
           "match": "\\\\[\\S\\s]"
-        },
-        {
-          "name": "storage.type.maraca",
-          "match": ">"
         },
         {
           "name": "storage.type.maraca",
