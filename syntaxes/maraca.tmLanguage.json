@@ -10,39 +10,32 @@
     "main": {
       "patterns": [
         {
-          "name": "constant.character.escape.maraca",
-          "match": "(\\\\(\\S|\\n| )|_)"
-        },
-        {
-          "name": "storage.type.maraca",
-          "match": "\\[|\\]|\\(|\\)|\\{|\\}|,"
-        },
-        {
-          "name": "support.type.maraca",
-          "match": "(((((\\d+\\.\\d+)|([a-zA-Z0-9]+)) +)*((\\d+\\.\\d+)|([a-zA-Z0-9]+)))|('([^\\\\]|\\\\[\\S\\s])*?'))?(:=\\?|:=|:~|:|=>>|=>)"
-        },
-        {
-          "name": "support.variable.maraca",
-          "match": "(((((\\d+\\.\\d+)|([a-zA-Z0-9]+)) +)*((\\d+\\.\\d+)|([a-zA-Z0-9]+)))|('([^\\\\]|\\\\[\\S\\s])*?'))?(\\?)"
-        },
-        {
-          "name": "keyword.operator.maraca",
-          "match": "->|<=|>=|<|>|~|=|\\+|\\-|\\*|/|%|\\^|!|\\.|\\||#"
-        },
-        {
-          "name": "string.single.maraca",
-          "match": "(\\d+\\.\\d+)|([a-zA-Z0-9]+)"
-        },
-        {
-          "name": "string.single.maraca",
-          "begin": "'",
-          "end": "'",
+          "begin": "(\\()",
+          "end": "(\\))",
+          "captures": {
+            "1": { "name": "storage.type.maraca" }
+          },
           "patterns": [
             {
-              "name": "constant.character.escape.maraca",
-              "match": "\\\\[\\S\\s]"
+              "include": "#expr"
             }
           ]
+        },
+        {
+          "include": "#block"
+        },
+        {
+          "name": "constant.character.escape.maraca",
+          "match": "\\\\(\\S|\\n| )"
+        },
+        {
+          "name": "variable.other.maraca",
+          "match": "@([a-zA-Z0-9]+|\"[^\"]*\")"
+        },
+
+        {
+          "name": "markup.raw.maraca",
+          "match": "[a-zA-Z0-9]+"
         },
         {
           "name": "markup.raw.maraca",
@@ -53,14 +46,69 @@
               "include": "#string"
             }
           ]
+        }
+      ]
+    },
+    "expr": {
+      "patterns": [
+        {
+          "name": "keyword.operator.maraca",
+          "match": "<=|>=|<|>|=|\\+|\\-|\\*|/|%|\\^|!|\\.|\\|"
         },
         {
-          "name": "comment.block.maraca",
-          "begin": "`",
-          "end": "(,)",
+          "include": "#main"
+        }
+      ]
+    },
+    "block": {
+      "patterns": [
+        {
+          "begin": "(<)",
+          "end": "(>)",
           "captures": {
             "1": { "name": "storage.type.maraca" }
-          }
+          },
+          "patterns": [
+            {
+              "name": "support.type.maraca",
+              "match": "([a-zA-Z0-9]+|\"[^\"]*\")?(\\+=|=>>>|=>>|=>|=)"
+            },
+            {
+              "include": "#main"
+            }
+          ]
+        },
+        {
+          "begin": "(\\[)",
+          "end": "(\\])",
+          "captures": {
+            "1": { "name": "storage.type.maraca" }
+          },
+          "patterns": [
+            {
+              "name": "support.type.maraca",
+              "match": "([a-zA-Z0-9]+|\"[^\"]*\")?(\\+=|=>>>|=>>|=>|=)"
+            },
+            {
+              "include": "#main"
+            }
+          ]
+        },
+        {
+          "begin": "(\\{)",
+          "end": "(\\})",
+          "captures": {
+            "1": { "name": "storage.type.maraca" }
+          },
+          "patterns": [
+            {
+              "name": "support.type.maraca",
+              "match": "([a-zA-Z0-9]+|\"[^\"]*\")?(\\+=|=>>>|=>>|=>|=)"
+            },
+            {
+              "include": "#main"
+            }
+          ]
         }
       ]
     },
@@ -71,14 +119,7 @@
           "match": "\\\\[\\S\\s]"
         },
         {
-          "name": "storage.type.maraca",
-          "begin": "<",
-          "end": "/>",
-          "patterns": [
-            {
-              "include": "#main"
-            }
-          ]
+          "include": "#block"
         }
       ]
     }
