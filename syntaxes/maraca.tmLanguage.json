@@ -29,14 +29,14 @@
           "match": "\\\\(\\S|\\n| )"
         },
         {
-          "name": "variable.other.maraca",
-          "match": "@([a-zA-Z0-9]+|\"[^\"]*\")"
-        },
-
-        {
           "name": "markup.raw.maraca",
+          "match": "[0-9]+"
+        },
+        {
+          "name": "variable.other.maraca",
           "match": "[a-zA-Z0-9]+"
         },
+
         {
           "name": "markup.raw.maraca",
           "begin": "\"",
