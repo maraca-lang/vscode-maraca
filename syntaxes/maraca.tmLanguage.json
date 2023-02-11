@@ -1,128 +1,189 @@
 {
-  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "Maraca",
+  "scopeName": "source.maraca",
   "patterns": [
     {
-      "include": "#main"
+      "include": "#value"
     }
   ],
   "repository": {
-    "main": {
-      "patterns": [
-        {
-          "begin": "(\\()",
-          "end": "(\\))",
-          "captures": {
-            "1": { "name": "storage.type.maraca" }
-          },
-          "patterns": [
-            {
-              "include": "#expr"
-            }
-          ]
-        },
-        {
-          "include": "#block"
-        },
-        {
-          "name": "constant.character.escape.maraca",
-          "match": "\\\\(\\S|\\n| )"
-        },
-        {
-          "name": "markup.raw.maraca",
-          "match": "[0-9]+"
-        },
-        {
-          "name": "variable.other.maraca",
-          "match": "[a-zA-Z0-9]+"
-        },
-
-        {
-          "name": "markup.raw.maraca",
-          "begin": "\"",
-          "end": "\"",
-          "patterns": [
-            {
-              "include": "#string"
-            }
-          ]
-        }
-      ]
-    },
-    "expr": {
-      "patterns": [
-        {
-          "name": "keyword.operator.maraca",
-          "match": "<=|>=|<|>|=|\\+|\\-|\\*|/|%|\\^|!|\\.|\\|"
-        },
-        {
-          "include": "#main"
-        }
-      ]
-    },
     "block": {
+      "begin": "\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.brackets.begin.maraca"
+        }
+      },
+      "end": "\\]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.brackets.end.maraca"
+        }
+      },
+      "name": "meta.brackets.maraca",
       "patterns": [
         {
-          "begin": "(<)",
-          "end": "(>)",
-          "captures": {
-            "1": { "name": "storage.type.maraca" }
-          },
-          "patterns": [
-            {
-              "name": "support.type.maraca",
-              "match": "([a-zA-Z0-9]+|\"[^\"]*\")?(\\+=|=>>>|=>>|=>|=)"
-            },
-            {
-              "include": "#main"
-            }
-          ]
-        },
-        {
-          "begin": "(\\[)",
-          "end": "(\\])",
-          "captures": {
-            "1": { "name": "storage.type.maraca" }
-          },
-          "patterns": [
-            {
-              "name": "support.type.maraca",
-              "match": "([a-zA-Z0-9]+|\"[^\"]*\")?(\\+=|=>>>|=>>|=>|=)"
-            },
-            {
-              "include": "#main"
-            }
-          ]
-        },
-        {
-          "begin": "(\\{)",
-          "end": "(\\})",
-          "captures": {
-            "1": { "name": "storage.type.maraca" }
-          },
-          "patterns": [
-            {
-              "name": "support.type.maraca",
-              "match": "([a-zA-Z0-9]+|\"[^\"]*\")?(\\+=|=>>>|=>>|=>|=)"
-            },
-            {
-              "include": "#main"
-            }
-          ]
+          "include": "#items"
         }
       ]
+    },
+    "scope": {
+      "begin": "{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.braces.begin.maraca"
+        }
+      },
+      "end": "}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.braces.end.maraca"
+        }
+      },
+      "name": "meta.braces.maraca",
+      "patterns": [
+        {
+          "include": "#items"
+        }
+      ]
+    },
+    "group": {
+      "begin": "\\(",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.parens.begin.maraca"
+        }
+      },
+      "end": "\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.parens.end.maraca"
+        }
+      },
+      "name": "meta.parens.maraca",
+      "patterns": [
+        {
+          "include": "#value"
+        },
+        {
+          "match": ",",
+          "name": "punctuation.separator.maraca"
+        }
+      ]
+    },
+    "items": {
+      "patterns": [
+        {
+          "include": "#value"
+        },
+        {
+          "match": "\\?",
+          "name": "keyword.control.maraca"
+        },
+        {
+          "match": "::|:=|:",
+          "name": "punctuation.separator.maraca"
+        },
+        {
+          "match": ",",
+          "name": "punctuation.separator.maraca"
+        }
+      ]
+    },
+    "operator": {
+      "patterns": [
+        {
+          "match": "\\||&|!|=|<=|>=|<|>|\\+|\\-|\\*|/|%|\\^|\\.|\\?\\.|->|~|\\.\\.\\.",
+          "name": "keyword.operator.maraca"
+        }
+      ]
+    },
+    "variable": {
+      "match": "[a-zA-Z0-9]+",
+      "name": "variable.other.maraca"
+    },
+    "number": {
+      "match": "\\d+(\\.\\d+)?",
+      "name": "string.quoted.single.maraca"
     },
     "string": {
+      "begin": "'",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.maraca"
+        }
+      },
+      "end": "'",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.maraca"
+        }
+      },
+      "name": "string.quoted.single.maraca",
       "patterns": [
         {
-          "name": "constant.character.escape.maraca",
-          "match": "\\\\[\\S\\s]"
+          "include": "#scope"
         },
         {
+          "include": "#stringcontent"
+        }
+      ]
+    },
+    "multistring": {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.maraca"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.maraca"
+        }
+      },
+      "end": "\"",
+      "name": "markup.raw.maraca",
+      "patterns": [
+        {
           "include": "#block"
+        },
+        {
+          "include": "#scope"
+        },
+        {
+          "include": "#stringcontent"
+        }
+      ]
+    },
+    "stringcontent": {
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.maraca"
+        }
+      ]
+    },
+    "value": {
+      "patterns": [
+        {
+          "include": "#block"
+        },
+        {
+          "include": "#operator"
+        },
+        {
+          "include": "#number"
+        },
+        {
+          "include": "#variable"
+        },
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#multistring"
         }
       ]
     }
-  },
-  "scopeName": "source.maraca"
+  }
 }
